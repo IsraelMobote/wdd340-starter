@@ -1,0 +1,9 @@
+<%# code to add the main heading element and giving it a value the same as the title variable %> 
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %> 
+
+<%# messages() %> 
+
+<%# this is the code for the delivery of the main content of the view %>
+ <%- grid %>
