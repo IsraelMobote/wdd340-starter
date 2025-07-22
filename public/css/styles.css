@@ -33,6 +33,7 @@ nav>ul {
   margin-top: 2rem;
   padding: 0.8rem;
   font-size: 1.3rem;
+  font-weight: 800;
   background-color: navy;
   display: flex;
   justify-content: space-evenly;
@@ -41,6 +42,10 @@ nav>ul {
 nav>ul>li {
   color: white;
   list-style-type: none;
+}
+
+nav>ul>li>a {
+  color: white;
 }
 
 h1 {
