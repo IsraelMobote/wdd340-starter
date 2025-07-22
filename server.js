@@ -1,4 +1,3 @@
-const baseController = require("./controllers/baseController")
 
 /* ******************************************
  * This server.js file is the primary file of the 
@@ -13,7 +12,9 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities/index")
+const Util = require("./utilities/")
+const baseController = require("./controllers/baseController")
+
 
 
 /* ***********************
@@ -29,7 +30,7 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 
 // Index route
-app.get("/", utilities.handleErrors(baseController.buildHome))
+app.get("/", Util.handleErrors(baseController.buildHome))
 
 //Inventory routes
 app.use("/inv", inventoryRoute)
