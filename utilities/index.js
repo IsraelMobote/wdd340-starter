@@ -5,23 +5,23 @@ const Util = {}
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
-  let data = await invModel.getClassifications()
-  let list = "<ul>"
-  list += '<li><a href="/" title="Home page">Home</a></li>'
-  data.rows.forEach((row) => {
-    list += "<li>"
-    list +=
-      '<a href="/inv/type/' +
-      row.classification_id +
-      '" title="See our inventory of ' +
-      row.classification_name +
-      ' vehicles">' +
-      row.classification_name +
-      "</a>"
-    list += "</li>"
-  })
-  list += "</ul>"
-  return list
+    let data = await invModel.getClassifications()
+    let list = "<ul>"
+    list += '<li><a href="/" title="Home page">Home</a></li>'
+    data.rows.forEach((row) => {
+        list += "<li>"
+        list +=
+            '<a href="/inv/type/' +
+            row.classification_id +
+            '" title="See our inventory of ' +
+            row.classification_name +
+            ' vehicles">' +
+            row.classification_name +
+            "</a>"
+        list += "</li>"
+    })
+    list += "</ul>"
+    return list
 }
 
 /* **************************************
@@ -55,6 +55,27 @@ Util.buildClassificationGrid = async function (data) {
         grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
     return grid
+}
+
+
+/* **************************************
+* Build the classification view HTML
+* ************************************ */
+Util.buildDetailView = async function (data) {
+    let detailHTML = '<div class="detailHTML">'
+    detailHTML += '<img src="' + data.inv_image +
+        '" title="' + data.inv_make + data.invModel + ' Vehicle on CSE 340 vehicles"' + '/>'
+    detailHTML += '<div class="description">'
+    detailHTML += '<p> Vehicle Make: ' + data.inv_make + '</p>'
+    detailHTML += '<p> Vehicle Model: ' + data.inv_model + '</p>'
+    detailHTML += '<p>  Price: $' + parseInt(data.inv_price).toLocaleString() + '</p>'
+    detailHTML += '<p>  Mileage: ' + data.inv_miles.toLocaleString() + '</p>'
+    detailHTML += '<p>  Year: ' + data.inv_year + '</p>'
+    detailHTML += '<p>  Description: ' + data.inv_description + '</p>'
+    detailHTML += '</div>'
+    detailHTML += '</div>'
+
+    return detailHTML
 }
 
 /* ****************************************
