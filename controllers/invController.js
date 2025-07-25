@@ -33,4 +33,12 @@ invCont.buildDetailViewByInvId = async function (req, res, next) {
     })
 }
 
+// this is a function that has an internal error so that the link 
+// in the footer partials will show a server error when clicked
+
+invCont.footerError = function () {
+    let number = 5
+    num = invModel.getItemDataByInveyId(number)
+}
+
 module.exports = invCont

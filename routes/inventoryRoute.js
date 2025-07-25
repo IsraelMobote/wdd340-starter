@@ -7,5 +7,6 @@ const invController = require("../controllers/invController")
 
 router.get("/type/:classificationId", Util.handleErrors(invController.buildByClassificationId));
 router.get("/detail/:invId", Util.handleErrors(invController.buildDetailViewByInvId));
+router.get("/footerError", Util.handleErrors(invController.footerError));
 
 module.exports = router;
