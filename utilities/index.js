@@ -66,12 +66,12 @@ Util.buildDetailView = async function (data) {
     detailHTML += '<img src="' + data.inv_image +
         '" title="' + data.inv_make + data.invModel + ' Vehicle on CSE 340 vehicles"' + '/>'
     detailHTML += '<div class="description">'
-    detailHTML += '<p> Vehicle Make: ' + data.inv_make + '</p>'
-    detailHTML += '<p> Vehicle Model: ' + data.inv_model + '</p>'
-    detailHTML += '<p>  Price: $' + parseInt(data.inv_price).toLocaleString() + '</p>'
-    detailHTML += '<p>  Mileage: ' + data.inv_miles.toLocaleString() + '</p>'
-    detailHTML += '<p>  Year: ' + data.inv_year + '</p>'
-    detailHTML += '<p>  Description: ' + data.inv_description + '</p>'
+    detailHTML += '<p> <span>Vehicle Make: </span>' + data.inv_make + '</p>'
+    detailHTML += '<p> <span>Vehicle Model: </span> ' + data.inv_model + '</p>'
+    detailHTML += '<p>  <span>Price: </span>$' + parseInt(data.inv_price).toLocaleString() + '</p>'
+    detailHTML += '<p>  <span>Mileage: </span>' + data.inv_miles.toLocaleString() + '</p>'
+    detailHTML += '<p>  <span>Year: </span>' + data.inv_year + '</p>'
+    detailHTML += '<p>  <span>Description: </span>' + data.inv_description + '</p>'
     detailHTML += '</div>'
     detailHTML += '</div>'
 
