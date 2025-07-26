@@ -197,3 +197,8 @@ footer {
   margin: 3rem 0 2rem;
   padding-left: 0.5rem;
 }
+
+footer > a {
+  color: blue;
+  text-decoration: underline;
+}
