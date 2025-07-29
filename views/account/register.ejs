@@ -1,0 +1,18 @@
+<% if (title) { %>
+<h1><%- title %></h1>
+<% } else {res.redirect('/')} %> <%# code to display flash messages %>
+<%-messages() %> <%# the form %>
+<form action="/account/register" method="post">
+  <fieldset>
+    <legend>Register</legend>
+    <label for="firstname">First name</label>
+    <input type="text" id="firstname" name="account_firstname" required />
+    <label for="lastname">Last name</label>
+    <input type="text" id="lastname" name="account_lastname" required />
+    <label for="email">Email address</label>
+    <input type="email" id="email" name="account_email" required />
+    <label for="password">Password</label>
+    <input type="text" id="password" name="account_password" required />
+    <button>Register</button>
+  </fieldset>
+</form>

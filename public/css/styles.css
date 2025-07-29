@@ -191,6 +191,67 @@ hr {
   color: navy;
 }
 
+
+/*------------ form styling ------------*/
+
+form {
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 2px solid silver;
+  background-color: rgb(8, 49, 102);
+  text-align: center;
+}
+
+label,
+input {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: block;
+  width: 90%;
+  margin: 5px auto;
+  text-align: left;
+}
+
+label {
+  margin-top: 20px;
+  color: white;
+}
+
+input {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+
+button {
+  font-size: 1.5rem;
+  padding: 5px;
+  margin: 40px auto;
+  background-color: rgb(170, 208, 223);
+}
+
+form p {
+  font-size: 1.5rem;
+  color: white;
+  padding-bottom: 2rem;
+}
+
+form p>a {
+  color: white;
+  text-decoration: underline;
+}
+
+form legend {
+  font-size: 2rem;
+  color: white;
+  text-align: left;
+}
+
+
+
 /*------------ footer styling ------------*/
 
 footer {
@@ -198,7 +259,7 @@ footer {
   padding-left: 0.5rem;
 }
 
-footer > a {
+footer>a {
   color: blue;
   text-decoration: underline;
 }
