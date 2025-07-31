@@ -1,3 +1,4 @@
+const { Result } = require("pg")
 const util = require(".")
 const { body, validationResult } = require("express-validator")
 const validate = {}
@@ -55,6 +56,7 @@ validate.checkRegData = async (req, res, next) => {
     const { account_firstname, account_lastname, account_email } = req.body
     let errors = []
     errors = validationResult(req)
+
     if (!errors.isEmpty()) {
         let nav = await util.getNav()
         res.render("account/register", {
