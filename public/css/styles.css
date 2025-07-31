@@ -250,7 +250,22 @@ form legend {
   text-align: left;
 }
 
+form span {
+  width: 90%;
+  font-size: 1.1rem;
+  text-align: left;
+  color: white;
+}
 
+/*------------ form validation styling ------------*/
+input:required:invalid,
+input:focus:invalid {
+  background-color: rgba(219, 137, 137, 0.856);
+}
+
+input:required:valid {
+  background-color: rgba(176, 241, 176, 0.932);
+}
 
 /*------------ footer styling ------------*/
 
