@@ -1,0 +1,8 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %> <%# code to add flash messages in the view %>
+<%- messages() %> <%# Links for adding new category or new vehicle %>
+<p class="managementLink">
+  <a href="/inv/add-classification">1, Add New Classification</a>
+</p>
+<p class="managementLink"><a href="/inv/add-inventory">2, Add New Inventory</a></p>

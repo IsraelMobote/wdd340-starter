@@ -267,6 +267,27 @@ input:required:valid {
   background-color: rgba(176, 241, 176, 0.932);
 }
 
+.notice {
+  color: rgb(187, 33, 33);
+  font-size: 1.4rem;
+  font-weight: 6600;
+  margin-bottom: 3rem;
+  margin-left: 15%;
+}
+
+/*------------ management view styling ------------*/
+.managementLink {
+  margin-top: 1.5rem;
+}
+
+.managementLink>a {
+  font-size: 1.5rem;
+  margin-left: 10%;
+  line-height: 1.5rem;
+  color: #0000ff;
+  text-decoration: underline;
+}
+
 /*------------ footer styling ------------*/
 
 footer {

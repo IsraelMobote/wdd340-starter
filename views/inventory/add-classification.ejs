@@ -1,0 +1,23 @@
+<%# code to add the main heading element and giving it a value the same as the
+title variable %> <% if (title) { %>
+<h1><%- title %></h1>
+<% } else {res.redirect('/')}%> <%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<form action="/inv/add-classification" method="post">
+  <label for="classification_name">Classification Name</label>
+  <span>do not include space or special character of any kind</span>
+  <input
+    type="text"
+    name="classification_name"
+    required
+    value="<%= classification_name %>"
+    pattern="^[a-zA-Z0-9]+$"
+  />
+  <button>Add Classification</button>
+</form>
