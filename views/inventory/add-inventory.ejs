@@ -10,6 +10,7 @@ title variable %> <% if (title) { %>
 <% } %>
 
 <form action="/inv/add-inventory" method="post">
+  <%- selectList %>
   <label for="inv_make">Inventory Make</label>
   <input
     type="text"
@@ -36,7 +37,7 @@ title variable %> <% if (title) { %>
   />
   <label for="inv_description">Inventory Description</label>
   <textarea
-    colspan="3"
+    cols="4"
     name="inv_description"
     id="inv_description"
     value="<%= inv_description %>"

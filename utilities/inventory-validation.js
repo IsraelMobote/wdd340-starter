@@ -27,6 +27,12 @@ validate.addClassificationRules = () => {
   * ********************************* */
 validate.addInventoryRules = () => {
     return [
+        // valid classification_id is required
+        body("inv_make")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("A valid classification is required."),
 
         // valid inv_make is required
         body("inv_make")
@@ -108,17 +114,19 @@ validate.checkAddClassificationData = async (req, res, next) => {
  * Check data and return errors or continue to add new inventory
  * ***************************** */
 validate.checkAddInventoryData = async (req, res, next) => {
-    const { inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color } = req.body
+    const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color } = req.body
     let errors = []
     errors = validationResult(req)
 
     if (!errors.isEmpty()) {
         let nav = await util.getNav()
+        let selectList = await util.buildClassificationList(classification_id)
         res.render("inventory/add-inventory", {
             title: "Add Inventory",
             nav,
             errors,
-            inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
+            selectList,
+            classification_id, inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
         })
         return
     }

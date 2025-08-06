@@ -213,6 +213,17 @@ input {
   text-align: left;
 }
 
+textarea,
+select {
+  padding: 5px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: block;
+  width: 90%;
+  margin: 5px auto;
+  text-align: left;
+}
+
 label {
   margin-top: 20px;
   color: white;

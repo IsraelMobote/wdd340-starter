@@ -35,13 +35,15 @@ invCont.buildAddClassificationView = async function (req, res, next) {
 
 invCont.buildAddInventoryView = async function (req, res, next) {
     let nav = await utilities.getNav()
+    let selectList = await utilities.buildClassificationList()
     req.flash("notice", "*Welcome to the Add Inventory View")
     res.render("./inventory/add-inventory", {
         title: "Add Inventory View",
         nav,
         errors: null,
-        inv_make: null, inv_model: null, inv_year: null, inv_description: null,
-        inv_price: null, inv_miles: null, inv_color: null
+        selectList,
+        classification_id: null, inv_make: null, inv_model: null, inv_year: null,
+        inv_description: null, inv_price: null, inv_miles: null, inv_color: null
     }
     )
 }
@@ -70,9 +72,11 @@ invCont.AddNewClassification = async function (req, res) {
 
 invCont.AddNewInventory = async function (req, res) {
     let nav = await utilities.getNav()
-    const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
 
-    const addInventoryResult = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color)
+    const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+
+    const addInventoryResult = await invModel.addInventory(classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color)
+    let selectList = await utilities.buildClassificationList(classification_id)
 
     if (addInventoryResult) {
         req.flash("notice", "*a new inventory has been added")
@@ -85,7 +89,9 @@ invCont.AddNewInventory = async function (req, res) {
         req.flash("notice", "Sorry, the registration failed.")
         res.status(501).render("inventory/add-inventory", {
             title: "Add Inventory",
-            nav
+            nav,
+            selectList,
+            classification_id, inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
         })
     }
 }
