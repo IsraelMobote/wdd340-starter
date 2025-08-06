@@ -126,7 +126,7 @@ validate.checkAddInventoryData = async (req, res, next) => {
             nav,
             errors,
             selectList,
-            classification_id, inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
+            inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
         })
         return
     }

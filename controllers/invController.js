@@ -42,7 +42,7 @@ invCont.buildAddInventoryView = async function (req, res, next) {
         nav,
         errors: null,
         selectList,
-        classification_id: null, inv_make: null, inv_model: null, inv_year: null,
+        inv_make: null, inv_model: null, inv_year: null,
         inv_description: null, inv_price: null, inv_miles: null, inv_color: null
     }
     )
@@ -91,7 +91,7 @@ invCont.AddNewInventory = async function (req, res) {
             title: "Add Inventory",
             nav,
             selectList,
-            classification_id, inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
+            inv_make, inv_model, inv_year, inv_description, inv_price, inv_miles, inv_color
         })
     }
 }

@@ -213,7 +213,6 @@ input {
   text-align: left;
 }
 
-textarea,
 select {
   padding: 5px;
   font-size: 1.3rem;
@@ -281,7 +280,6 @@ input:required:valid {
 .notice {
   color: rgb(187, 33, 33);
   font-size: 1.4rem;
-  font-weight: 6600;
   margin-bottom: 3rem;
   margin-left: 15%;
 }

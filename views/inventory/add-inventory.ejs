@@ -10,6 +10,9 @@ title variable %> <% if (title) { %>
 <% } %>
 
 <form action="/inv/add-inventory" method="post">
+  <label for="classification_id"
+    >Choose a classification for the inventory</label
+  >
   <%- selectList %>
   <label for="inv_make">Inventory Make</label>
   <input
@@ -36,14 +39,13 @@ title variable %> <% if (title) { %>
     required
   />
   <label for="inv_description">Inventory Description</label>
-  <textarea
-    cols="3"
+  <input
+    type="text"
     name="inv_description"
     id="inv_description"
     value="<%= inv_description %>"
     required
-  >
-  </textarea>
+  />
   <label for="inv_image">Inventory Image</label>
   <input
     name="inv_image"
