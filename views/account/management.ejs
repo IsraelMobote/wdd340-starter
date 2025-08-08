@@ -1,0 +1,12 @@
+<%# code to add the main heading element and giving it a value the same as the
+title variable %> <% if (title) { %>
+<h1><%- title %></h1>
+<% } else {res.redirect('/')}%> <%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<p>You're logged in</p>

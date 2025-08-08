@@ -1,0 +1,87 @@
+<%# code to add the main heading element and giving it a value the same as the
+title variable %> <% if (title) { %>
+<h1><%- title %></h1>
+<% } else {res.redirect('/')}%> <%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<form id="updateForm" action="/inv/update" method="post">
+  <label for="classification_id"
+    >Choose a classification for the inventory</label
+  >
+  <%- selectList %>
+  <label for="inv_make">Inventory Make</label>
+  <input
+    type="text"
+    name="inv_make"
+    id="inv_make"
+    value="<%= inv_make %>"
+    required
+  />
+  <label for="inv_model">Inventory Model</label>
+  <input
+    type="text"
+    name="inv_model"
+    id="inv_model"
+    value="<%= inv_model %>"
+    required
+  />
+  <label for="inv_year">Inventory Year</label>
+  <input
+    type="text"
+    name="inv_year"
+    id="inv_year"
+    value="<%= inv_year %>"
+    required
+  />
+  <label for="inv_description">Inventory Description</label>
+  <input
+    type="text"
+    name="inv_description"
+    id="inv_description"
+    value="<%= inv_description %>"
+    required
+  />
+  <label for="inv_image">Inventory Image</label>
+  <input name="inv_image" id="inv_image" value="<%= inv_image %>" required />
+  <label for="inv_thumbnail">Inventory Thumbnail</label>
+  <input
+    name="inv_thumbnail"
+    id="inv_thumbnail"
+    value="<%= inv_thumbnail %>"
+    required
+  />
+  <label for="inv_price">Inventory Price</label>
+  <input
+    type="number"
+    name="inv_price"
+    id="inv_price"
+    value="<%= inv_price %>"
+    required
+  />
+  <label for="inv_miles">Inventory Miles</label>
+  <input
+    type="number"
+    name="inv_miles"
+    id="inv_miles"
+    value="<%= inv_miles %>"
+    required
+  />
+  <label for="inv_color">Inventory Color</label>
+  <input
+    type="text"
+    name="inv_color"
+    id="inv_color"
+    value="<%= inv_color %>"
+    required
+  />
+  <button type="submit" disabled>Update Vehicle</button>
+  <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
+  locals.inv_id %>" <% } %>/>
+</form>
+
+<script src="../../js/inv-update.js"></script>

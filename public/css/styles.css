@@ -297,6 +297,15 @@ input:required:valid {
   text-decoration: underline;
 }
 
+.invManagement {
+  padding: 2rem;
+  max-width: 600px;
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
 /*------------ footer styling ------------*/
 
 footer {
