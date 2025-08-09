@@ -44,6 +44,6 @@ title variable %> <% if (title) { %>
     readonly
   />
   <button type="submit">Delete Vehicle</button>
-  <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
+  <input type="hidden" name="inv_id" <% if(locals.inv_id) { % /> value="<%=
   locals.inv_id %>" <% } %>/>
 </form>

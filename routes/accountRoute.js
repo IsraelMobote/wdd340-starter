@@ -9,6 +9,7 @@ router.get("/",
     util.handleErrors(acctController.buildAccountView));
 router.get("/login", util.handleErrors(acctController.buildLogin));
 router.get("/register", util.handleErrors(acctController.buildRegister));
+router.get("/logout", util.handleErrors(acctController.logOut));
 
 //route for the post method in the register view form
 router.post("/register",

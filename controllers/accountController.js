@@ -126,4 +126,14 @@ async function buildAccountView(req, res) {
     })
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountView }
+/**
+ * function to log the user out of the application and
+ *  to delete the jwt token and set the account data to empty space
+ */
+async function logOut(req, res) {
+    res.clearCookie("jwt")
+    res.locals.accountData = ''
+    res.redirect("/")
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountView, logOut }

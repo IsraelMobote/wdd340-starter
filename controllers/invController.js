@@ -12,12 +12,44 @@ const invCont = {}
 invCont.buildManagementView = async function (req, res, next) {
     let nav = await utilities.getNav()
     const selectList = await utilities.buildClassificationList()
+    req.flash("notice", "Welcome to the Inventory Management View")
     res.render("./inventory/management", {
         title: "Management View",
         nav,
         selectList,
     }
     )
+
+}
+
+/**
+ * function check if the user is either Employee or Admin 
+ * and if positive move to the next function
+ */
+invCont.checkUser = async function (req, res, next) {
+    try {
+        const account_type = res.locals.accountData.account_type
+        if (account_type == 'Employee' || account_type == 'Admin') {
+            next()
+        }
+        else {
+            let nav = await utilities.getNav()
+            const selectList = await utilities.buildClassificationList()
+            req.flash("notice", "Please login with the details or an Employee or Admin Account")
+            res.render("./account/login", {
+                title: "Login",
+                nav,
+                selectList,
+                errors: null
+            }
+            )
+        }
+    } catch (error) {
+        console.log(error)
+        req.flash("notice", "Please login with the details or an Employee or Admin Account")
+        res.redirect("/account/login")
+    }
+
 }
 
 

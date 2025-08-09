@@ -306,6 +306,30 @@ input:required:valid {
   }
 }
 
+/*------------ account management styling ------------*/
+.accountManagement {
+  margin-left: 20%;
+  padding: 1rem 0;
+
+  h2 {
+    font-size: 3rem;
+    color: rgb(31, 31, 163);
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    color: rgb(31, 31, 163);
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+
+  a {
+    font-size: 1.7rem;
+    text-decoration: underline;
+  }
+
+}
+
 /*------------ footer styling ------------*/
 
 footer {

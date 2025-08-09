@@ -6,7 +6,10 @@ const express = require("express")
 const router = new express.Router()
 const invController = require("../controllers/invController")
 
-router.get("/", Util.handleErrors(invController.buildManagementView));
+router.get("/",
+    invController.checkUser, // middle ware to check if the user is either Employee or Admin and if positive move to the next function
+    Util.handleErrors(invController.buildManagementView));
+
 router.get("/type/:classificationId", Util.handleErrors(invController.buildByClassificationId));
 router.get("/detail/:invId", Util.handleErrors(invController.buildDetailViewByInvId));
 router.get("/footerError", Util.handleErrors(invController.footerError));
