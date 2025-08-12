@@ -124,7 +124,6 @@ Util.checkJWTToken = (req, res, next) => {
                     return res.redirect("/account/login")
                 }
                 res.locals.accountData = accountData
-                console.log(accountData);
                 res.locals.loggedin = 1
                 next()
             })

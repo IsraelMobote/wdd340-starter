@@ -10,6 +10,7 @@ router.get("/",
 router.get("/login", util.handleErrors(acctController.buildLogin));
 router.get("/register", util.handleErrors(acctController.buildRegister));
 router.get("/logout", util.handleErrors(acctController.logOut));
+router.get("/update/:account_id", util.handleErrors(acctController.buildUpdateView));
 
 //route for the post method in the register view form
 router.post("/register",
@@ -22,6 +23,20 @@ router.post("/login",
     regValidate.LoginRules(),
     regValidate.checkLoginData,
     util.handleErrors(acctController.accountLogin)
+)
+
+//route for the post method in the update view account-update form
+router.post("/account-update",
+    regValidate.updateRules(),
+    regValidate.checkUpdateData,
+    util.handleErrors(acctController.updateAccount)
+)
+
+//route for the post method in the update view change-password form
+router.post("/change-password",
+    regValidate.changePasswordRules(),
+    regValidate.checkUpdateData,
+    util.handleErrors(acctController.changePassword)
 )
 
 module.exports = router;
