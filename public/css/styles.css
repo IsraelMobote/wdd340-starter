@@ -306,41 +306,43 @@ input:required:valid {
   padding: 2rem;
   max-width: 600px;
 
-  p {
-    margin-bottom: 1rem;
-  }
+}
+
+.invManagement>p {
+  margin-bottom: 1rem;
 }
 
 /*------------ account management styling ------------*/
 .accountManagement {
   margin-left: 20%;
   padding: 1rem 0;
-
-  h2 {
-    font-size: 3rem;
-    color: rgb(31, 31, 163);
-    margin-bottom: 2rem;
-  }
-
-  h3 {
-    color: rgb(31, 31, 163);
-    font-size: 2rem;
-    margin-top: 2rem;
-  }
-
-  a {
-    font-size: 1.7rem;
-    text-decoration: underline;
-  }
-
-
-  p {
-    font-size: 1.9rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
 }
+
+.accountManagement>h2 {
+  font-size: 3rem;
+  color: rgb(31, 31, 163);
+  margin-bottom: 2rem;
+}
+
+.accountManagement>h3 {
+  color: rgb(31, 31, 163);
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.accountManagement>a {
+  font-size: 1.7rem;
+  text-decoration: underline;
+}
+
+
+.accountManagement>p {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+
 
 /*------------ account update styling ------------*/
 .update-account {
