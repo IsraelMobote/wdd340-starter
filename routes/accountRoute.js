@@ -44,8 +44,10 @@ router.post("/change-password",
 //route for the post method in the admin login view
 router.post("/admin-login",
     regValidate.LoginRules(),
-    regValidate.checkAdminLoginData,
+    util.handleErrors(regValidate.checkAdminLoginData),
     util.handleErrors(acctController.buildAdminManagementView)
 )
+
+router.post("/delete", util.handleErrors(acctController.deleteAccount))
 
 module.exports = router;

@@ -9,12 +9,13 @@ title variable %> <% if (title) { %>
 </ul>
 <% } %>
 
-<p>Confirm Deletion - The delete is permanent.</p>
+<p class="deleteMessage">Confirm Deletion - The delete is permanent.</p>
 <form id="deleteForm" action="/account/delete" method="post">
   <label for="account_firstname">First Name</label>
   <input
     type="text"
     name="account_firstname"
+    id="account_firstname"
     value="<%= account_firstname %>"
     readonly
   />
@@ -22,6 +23,7 @@ title variable %> <% if (title) { %>
   <input
     type="text"
     name="account_lastname"
+    id="account_lastname"
     value="<%= account_lastname %>"
     readonly
   />
@@ -29,16 +31,12 @@ title variable %> <% if (title) { %>
   <input
     type="email"
     name="account_email"
+    id="account_email"
     value="<%= account_email %>"
     readonly
   />
   <label for="account_type">Account Type</label>
-  <input
-    type="number"
-    name="account_type"
-    value="<%= account_type %>"
-    readonly
-  />
+  <input type="text" name="account_type"  id="account_type" value="<%= account_type %>" readonly />
   <button type="submit">Delete Account</button>
   <input type="hidden" name="account_id" <% if(locals.account_id) { %>
   value="<%= locals.account_id %>" <% } %>/>

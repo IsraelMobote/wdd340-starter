@@ -58,15 +58,33 @@ async function checkExistingEmail(account_email) {
     } catch (error) {
         return error.message
     }
-
 }
 
 /* *****************************
 * Return list of all accounts data
 * ***************************** */
 async function getAccountsList() {
-    const result = await pool.query("SELECT * FROM public.account ORDER BY account_id")
-    return result.rows
+    try {
+        const sql = "SELECT * FROM public.account ORDER BY account_id"
+        const result = await pool.query(sql)
+        return result.rows
+    } catch (error) {
+        return error.message
+    }
+}
+
+/* *****************************
+* Delete Account from Database by account_id
+* ***************************** */
+async function deleteAccountById(account_id) {
+    try {
+        const sql = "DELETE FROM account WHERE account_id = $1"
+        const result = await pool.query(sql, [account_id])
+        console.log(result)
+        return result
+    } catch (error) {
+        return error.message
+    }
 }
 
 
@@ -99,4 +117,4 @@ async function getAccountById(account_id) {
     }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountsList, getAccountByEmail, updateAccount, updatePassword, getAccountById };
+module.exports = { registerAccount, checkExistingEmail, getAccountsList, getAccountByEmail, updateAccount, updatePassword, getAccountById, deleteAccountById };

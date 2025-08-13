@@ -175,14 +175,14 @@ async function buildUpdateView(req, res) {
 }
 
 /**
- * Deliver Account Update View
+ * Deliver Account Delete View
  */
 async function buildDeleteView(req, res) {
     let nav = await Util.getNav()
     const accountId = req.params.account_id
     const accountData = await accountModel.getAccountById(accountId) // model function to get the accountData by account_id
 
-    res.locals.accountData = accountData
+    console.log(accountData.account_type)
 
     res.render("account/delete-confirm", {
         title: "Delete Account Information",
@@ -262,7 +262,7 @@ async function buildAccountsList(data) {
 
     // Set up the table labels 
     let dataTable = '<thead>';
-    dataTable += '<tr><th>First-Name</th><th>Last-Name</th><th>Email</th><th>Type</th><th>&nbsp;</th></tr>';
+    dataTable += '<tr><th>First-Name</th><th>Last-Name</th><th>Email</th><th>Type</th><th>Action</th></tr>';
     dataTable += '</thead>';
     // Set up the table body 
     dataTable += '<tbody>';
@@ -390,4 +390,29 @@ async function changePassword(req, res) {
     }
 }
 
-module.exports = { buildLogin, buildAdminLogin, buildAccountsList, buildDeleteView, buildRegister, registerAccount, accountLogin, buildUpdateView, buildAdminManagementView, buildAccountView, logOut, updateAccount, changePassword }
+/**
+ * process to delete account from the database
+ */
+async function deleteAccount(req, res) {
+    let nav = await Util.getNav()
+    const { account_firstname, account_id } = req.body
+    const deleteResult = await accountModel.deleteAccountById(account_id) // model function to get the accountData by account_id
+
+    if (deleteResult) {
+        const data = await accountModel.getAccountsList()
+        const accountsList = await buildAccountsList(data)
+
+        req.flash("notice", `the user ${account_firstname} was successfully deleted`)
+        res.render("account/admin-management", {
+            title: "Admin Management",
+            nav,
+            errors: null,
+            accountsList,
+        })
+    } else {
+        req.flash("notice", "the account deletion failed")
+        res.redirect(`/account/delete/${account_id}`)
+    }
+}
+
+module.exports = { buildLogin, buildAdminLogin, buildAccountsList, buildDeleteView, buildRegister, registerAccount, accountLogin, buildUpdateView, buildAdminManagementView, buildAccountView, logOut, updateAccount, changePassword, deleteAccount }
