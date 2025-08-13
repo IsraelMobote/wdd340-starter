@@ -116,7 +116,7 @@ validate.updateRules = (req, res) => {
             .isEmail()
             .normalizeEmail() // refer to validator.js docs
             .withMessage("A valid email is required.")
-        
+
     ]
 }
 
@@ -184,6 +184,27 @@ validate.checkLoginData = async (req, res, next) => {
     next()
 }
 
+
+/* ******************************
+ * Check data and return errors or continue to Login Process
+ * ***************************** */
+validate.checkAdminLoginData = async (req, res, next) => {
+    const { account_email } = req.body
+    let errors = []
+    errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+        let nav = await util.getNav()
+        res.render("account/admin-login", {
+            errors,
+            title: "Admin Login",
+            nav,
+            account_email,
+        })
+        return
+    }
+    next()
+}
 
 /* ******************************
  * Check data for account update and return errors or continue to update account data

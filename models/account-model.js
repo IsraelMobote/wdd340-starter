@@ -62,6 +62,15 @@ async function checkExistingEmail(account_email) {
 }
 
 /* *****************************
+* Return list of all accounts data
+* ***************************** */
+async function getAccountsList() {
+    const result = await pool.query("SELECT * FROM public.account ORDER BY account_id")
+    return result.rows
+}
+
+
+/* *****************************
 * Return account data using email address
 * ***************************** */
 async function getAccountByEmail(account_email) {
@@ -90,4 +99,4 @@ async function getAccountById(account_id) {
     }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, updatePassword, getAccountById };
+module.exports = { registerAccount, checkExistingEmail, getAccountsList, getAccountByEmail, updateAccount, updatePassword, getAccountById };

@@ -1,0 +1,45 @@
+<%# code to add the main heading element and giving it a value the same as the
+title variable %> <% if (title) { %>
+<h1><%- title %></h1>
+<% } else {res.redirect('/')}%> <%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<p>Confirm Deletion - The delete is permanent.</p>
+<form id="deleteForm" action="/account/delete" method="post">
+  <label for="account_firstname">First Name</label>
+  <input
+    type="text"
+    name="account_firstname"
+    value="<%= account_firstname %>"
+    readonly
+  />
+  <label for="account_lastname">Last Name</label>
+  <input
+    type="text"
+    name="account_lastname"
+    value="<%= account_lastname %>"
+    readonly
+  />
+  <label for="account_email">Email</label>
+  <input
+    type="email"
+    name="account_email"
+    value="<%= account_email %>"
+    readonly
+  />
+  <label for="account_type">Account Type</label>
+  <input
+    type="number"
+    name="account_type"
+    value="<%= account_type %>"
+    readonly
+  />
+  <button type="submit">Delete Account</button>
+  <input type="hidden" name="account_id" <% if(locals.account_id) { %>
+  value="<%= locals.account_id %>" <% } %>/>
+</form>

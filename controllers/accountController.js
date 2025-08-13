@@ -28,6 +28,18 @@ async function buildLogin(req, res, next) {
     })
 }
 
+/**
+ * Deliver Admin Login View
+ */
+async function buildAdminLogin(req, res, next) {
+    let nav = await Util.getNav()
+    res.render("account/admin-login", {
+        title: "Admin Login",
+        nav,
+        errors: null,
+    })
+}
+
 /* ****************************************
 *  Process Registration
 * *************************************** */
@@ -162,6 +174,110 @@ async function buildUpdateView(req, res) {
     })
 }
 
+/**
+ * Deliver Account Update View
+ */
+async function buildDeleteView(req, res) {
+    let nav = await Util.getNav()
+    const accountId = req.params.account_id
+    const accountData = await accountModel.getAccountById(accountId) // model function to get the accountData by account_id
+
+    res.locals.accountData = accountData
+
+    res.render("account/delete-confirm", {
+        title: "Delete Account Information",
+        nav,
+        errors: null,
+        account_firstname: accountData.account_firstname,
+        account_lastname: accountData.account_lastname,
+        account_email: accountData.account_email,
+        account_type: accountData.account_type,
+        account_id: accountData.account_id
+    })
+}
+
+/**
+ * Deliver Admin Management View
+ */
+async function buildAdminManagementView(req, res) {
+    let nav = await Util.getNav()
+    const { account_email, account_password } = req.body
+    const accountData = await accountModel.getAccountByEmail(account_email)
+    if (!accountData) {
+        req.flash("notice", "Please check your credentials and try again.")
+        res.status(400).render("account/admin-login", {
+            title: "Admin Login",
+            nav,
+            errors: null,
+            account_email,
+        })
+        return
+    }
+    try {
+        if (accountData.account_type == 'Admin') {
+            if (await bcrypt.compare(account_password, accountData.account_password)) {
+                delete accountData.account_password
+                const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+                if (process.env.NODE_ENV === 'development') {
+                    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+                } else {
+                    res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+                }
+
+                const data = await accountModel.getAccountsList()
+                const accountsList = await buildAccountsList(data)
+                res.render("account/admin-management", {
+                    title: "Admin Management",
+                    nav,
+                    errors: null,
+                    accountsList,
+                })
+            }
+            else {
+                req.flash("message notice", "Please check your credentials and try again.")
+                res.status(400).render("account/admin-login", {
+                    title: "Admin Login",
+                    nav,
+                    errors: null,
+                    account_email,
+                })
+            }
+        }
+        else {
+            req.flash("message notice", "hello registered user, please only admin user are allowed to access the admin management view")
+            res.status(400).render("account/admin-login", {
+                title: "Admin Login",
+                nav,
+                errors: null,
+                account_email,
+            })
+        }
+    } catch (error) {
+        throw new Error('Access Forbidden')
+    }
+}
+
+// build accounts list and return accountsList
+async function buildAccountsList(data) {
+
+    // Set up the table labels 
+    let dataTable = '<thead>';
+    dataTable += '<tr><th>First-Name</th><th>Last-Name</th><th>Email</th><th>Type</th><th>&nbsp;</th></tr>';
+    dataTable += '</thead>';
+    // Set up the table body 
+    dataTable += '<tbody>';
+    // Iterate over all vehicles in the array and put each in a row 
+    data.forEach(function (element) {
+        dataTable += `<tr><td>${element.account_firstname}</td>`;
+        dataTable += `<td>${element.account_lastname}</td>`;
+        dataTable += `<td>${element.account_email}</td>`;
+        dataTable += `<td>${element.account_type}</td>`;
+        dataTable += `<td><a href='/account/delete/${element.account_id}' title='Click to delete'>Delete</a></td></tr>`;
+    })
+    dataTable += '</tbody>';
+
+    return dataTable
+}
 
 /* ****************************************
 *  Process Account Update
@@ -274,4 +390,4 @@ async function changePassword(req, res) {
     }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildUpdateView, buildAccountView, logOut, updateAccount, changePassword }
+module.exports = { buildLogin, buildAdminLogin, buildAccountsList, buildDeleteView, buildRegister, registerAccount, accountLogin, buildUpdateView, buildAdminManagementView, buildAccountView, logOut, updateAccount, changePassword }

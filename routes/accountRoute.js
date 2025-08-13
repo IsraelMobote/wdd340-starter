@@ -8,9 +8,11 @@ router.get("/",
     util.checkLogin,
     util.handleErrors(acctController.buildAccountView));
 router.get("/login", util.handleErrors(acctController.buildLogin));
+router.get("/admin-login", util.handleErrors(acctController.buildAdminLogin));
 router.get("/register", util.handleErrors(acctController.buildRegister));
 router.get("/logout", util.handleErrors(acctController.logOut));
 router.get("/update/:account_id", util.handleErrors(acctController.buildUpdateView));
+router.get("/delete/:account_id", util.handleErrors(acctController.buildDeleteView));
 
 //route for the post method in the register view form
 router.post("/register",
@@ -37,6 +39,13 @@ router.post("/change-password",
     regValidate.changePasswordRules(),
     regValidate.checkUpdateData,
     util.handleErrors(acctController.changePassword)
+)
+
+//route for the post method in the admin login view
+router.post("/admin-login",
+    regValidate.LoginRules(),
+    regValidate.checkAdminLoginData,
+    util.handleErrors(acctController.buildAdminManagementView)
 )
 
 module.exports = router;

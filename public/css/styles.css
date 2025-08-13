@@ -309,7 +309,7 @@ input:required:valid {
 }
 
 .invManagement>p {
-  
+
   margin-bottom: 1rem;
 }
 
@@ -331,6 +331,10 @@ input:required:valid {
   margin-top: 2rem;
 }
 
+.accountManagement > .noUnderline {
+  text-decoration: none;
+}
+
 .accountManagement>a {
   font-size: 1.7rem;
   text-decoration: underline;
@@ -341,6 +345,7 @@ input:required:valid {
   font-size: 1.9rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  text-decoration: underline;
 }
 
 
@@ -350,6 +355,34 @@ input:required:valid {
   margin: 2rem auto 3rem;
 }
 
+/*------------ admin management styling ------------*/
+
+.centerAndLarge {
+  font-size: 1.5rem;
+  margin: 1px auto;
+  text-align: center;
+}
+
+.bold {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+#AccountsDisplay {
+  margin: 0.2rem auto 1rem;
+}
+
+#AccountsDisplay th {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+#AccountsDisplay td{
+  font-size: 1.2rem;
+  padding: 5px;
+  border: 1px solid black;
+}
 /*------------ footer styling ------------*/
 
 footer {
